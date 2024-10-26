@@ -48,7 +48,7 @@ jobs:
         cd ${{ github.workspace }}
         git clone https://github.com/libsdl-org/SDL_mixer.git -b release-2.8.0 --depth 1 --recursive
         cd SDL_mixer
-        cmake -B build . -G Ninja -DSDL2MIXER_VENDORED=ON
+        cmake -B build . -G Ninja -DSDL2MIXER_VENDORED=ON -DSDL2MIXER_BUILD_SHARED_LIBS=OFF
         cmake --build build --config Release
         cmake --install build --prefix=${{ github.workspace }}/pon
 
