@@ -34,6 +34,7 @@ jobs:
         git clone https://github.com/marzer/tomlplusplus.git -b v3.4.0 --depth 1
         cd tomlplusplus
         cmake -B build . -G Ninja
+        cmake --build build --config Release
         sudo cmake --install build
 
     - name: Install SDL2
@@ -42,6 +43,7 @@ jobs:
         git clone https://github.com/libsdl-org/SDL.git -b release-2.30.8 --depth 1
         cd SDL
         cmake -B build . -G Ninja
+        cmake --build build --config Release
         sudo cmake --install build
 
     - name: Install SDL2_mixer
@@ -50,6 +52,7 @@ jobs:
         git clone https://github.com/libsdl-org/SDL_mixer.git -b release-2.8.0 --depth 1
         cd SDL_mixer
         cmake -B build . -G Ninja
+        cmake --build build --config Release
         sudo cmake --install build
 
     - name: Build
