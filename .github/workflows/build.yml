@@ -25,7 +25,7 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         cmake -B build . -G Ninja -DADD_INCLUDE_DIR=${{ matrix.config.add_inc }}
-        cmake --build dll_src/build --config Release
+        cmake --build build --config Release
 
     - name: Create Archive
       shell: pwsh
