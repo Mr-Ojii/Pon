@@ -20,7 +20,7 @@ jobs:
     - name:  Setup depends (Ubuntu)
       run: |
         sudo apt-get update
-        sudo apt-get ninja-build libsdl2-dev libsdl2-mixer-dev
+        sudo apt-get install ninja-build libsdl2-dev libsdl2-mixer-dev
 
     - name: Setup depends (macOS)
       if: ${{ matrix.config.os == 'macos-latest' }}
