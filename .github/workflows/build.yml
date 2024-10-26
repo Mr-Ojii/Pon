@@ -26,7 +26,15 @@ jobs:
     - name: Setup depends (macOS)
       if: ${{ startsWith(matrix.config.os, 'macos') }}
       run: |
-        brew install ninja tomlplusplus sdl2 sdl2_mixer
+        brew install ninja sdl2 sdl2_mixer
+
+    - name: Install toml++
+      run: |
+        cd ${{ github.workspace }}
+        git clone https://github.com/marzer/tomlplusplus.git -b v3.4.0 --depth 1
+        cd tomlplusplus
+        cmake -B build . -G Ninja
+        sudo cmake --install build
 
     - name: Build
       run: |
