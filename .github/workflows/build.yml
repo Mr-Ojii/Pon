@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        config:
+        - { os: macos-latest, add_inc: '/opt/homebrew/include' }
+    runs-on: ${{ matrix.config.os }}
+
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup depends (macOS)
+      if: ${{ matrix.config.os == 'macos-latest' }}
+      run: |
+        brew install tomlplusplus sdl2 sdl2_mixer
+
+    - name: Build
+      run: |
+        cd ${{ github.workspace }}
+        cmake -B build . -G Ninja -DADD_INCLUDE_DIR=${{ matrix.config.add_inc }}
+        cmake --build dll_src/build --config Release
+
+    - name: Create Archive
+      shell: pwsh
+      run: |
+        cd ${{ github.workspace }}/build
+        mkdir pub
+        cp Pon* pub
+        cd pub
+        7z a Pon_${{ matrix.config.os }}.zip *
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Pon-${{ matrix.config.os }}
+        path: ${{ github.workspace }}/pub/Pon_${{ matrix.config.os }}.zip
+        
