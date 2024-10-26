@@ -17,16 +17,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name:  Setup depends (Ubuntu)
-      if: ${{ startsWith(matrix.config.os, 'ubuntu') }}
-      run: |
-        sudo apt-get update
-        sudo apt-get install ninja-build
-
-    - name: Setup depends (macOS)
-      if: ${{ startsWith(matrix.config.os, 'macos') }}
-      run: |
-        brew install ninja
+    - uses: seanmiddleditch/gha-setup-ninja@master
 
     - name: Install toml++
       run: |
