@@ -40,5 +40,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Pon-${{ matrix.config.os }}
-        path: ${{ github.workspace }}/pub/Pon_${{ matrix.config.os }}.zip
+        path: ${{ github.workspace }}/build/pub/Pon_${{ matrix.config.os }}.zip
         
