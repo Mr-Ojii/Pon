@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         config:
+        - { os: ubuntu-latest, add_inc: ''}
         - { os: macos-latest, add_inc: '/opt/homebrew/include' }
     runs-on: ${{ matrix.config.os }}
 
@@ -15,6 +16,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name:  Setup depends (Ubuntu)
+      run: |
+        sudo apt-get update
+        sudo apt-get ninja-build libsdl2-dev libsdl2-mixer-dev
 
     - name: Setup depends (macOS)
       if: ${{ matrix.config.os == 'macos-latest' }}
