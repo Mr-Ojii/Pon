@@ -13,7 +13,8 @@ jobs:
         - { os: windows-latest, add_inc: '' }
     runs-on: ${{ matrix.config.os }}
 
-
+    env:
+      CMAKE_PREFIX_PATH: ${{ github.workspace }}/exp
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -27,7 +28,7 @@ jobs:
         cd tomlplusplus
         cmake -B build . -G Ninja
         cmake --build build --config Release
-        sudo cmake --install build
+        cmake --install build --prefix=${{ github.workspace }}/pon
 
     - name: Install SDL2
       run: |
@@ -36,7 +37,7 @@ jobs:
         cd SDL
         cmake -B build . -G Ninja
         cmake --build build --config Release
-        sudo cmake --install build
+        cmake --install build --prefix=${{ github.workspace }}/pon
 
     - name: Install SDL2_mixer
       run: |
@@ -45,7 +46,7 @@ jobs:
         cd SDL_mixer
         cmake -B build . -G Ninja -DSDL2MIXER_VENDORED=ON
         cmake --build build --config Release
-        sudo cmake --install build
+        cmake --install build --prefix=${{ github.workspace }}/pon
 
     - name: Build
       run: |
