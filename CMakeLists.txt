@@ -17,4 +17,4 @@ find_package(SDL2_mixer REQUIRED)
 find_package(tomlplusplus REQUIRED)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${ADD_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2_mixer::SDL2_mixer)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2-static SDL2_mixer::SDL2_mixer-static)
