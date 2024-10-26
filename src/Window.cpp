@@ -29,9 +29,11 @@ Window::Window() : window(nullptr), renderer(nullptr), config() {
   if (!toml.contains("files"))
     toml.emplace("files", toml::array());
   auto &arr = *toml["files"].as_array();
-  int n = std::max(32 - arr.size(), 0UL);
-  for (int i = 0; i < n; i++) {
-    arr.push_back("");
+  if (arr.size() < 32) {
+    int n = std::max(32UL - static_cast<unsigned long>(arr.size()), 0UL);
+    for (int i = 0; i < n; i++) {
+      arr.push_back("");
+    }
   }
   Mix_AllocateChannels(32);
 }
@@ -79,7 +81,7 @@ void Window::Run() {
   auto &toml = this->config.getToml();
 
   if (auto files = toml["files"].as_array()) {
-    for (int i = 0; i < std::min(files->size(), 16UL); i++) {
+    for (int i = 0; i < std::min(static_cast<unsigned long>(files->size()), 16UL); i++) {
       if (files[0][i].is_string())
         but[i].Load(files[0][i].as_string()->get().c_str());
     }
