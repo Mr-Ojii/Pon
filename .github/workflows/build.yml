@@ -8,8 +8,9 @@ jobs:
     strategy:
       matrix:
         config:
-        - { os: ubuntu-24.04, add_inc: ''}
+        - { os: ubuntu-24.04, add_inc: '' }
         - { os: macos-latest, add_inc: '/opt/homebrew/include' }
+        - { os: windows-latest, add_inc: '' }
     runs-on: ${{ matrix.config.os }}
 
 
