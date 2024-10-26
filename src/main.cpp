@@ -1,3 +1,7 @@
+#ifdef WIN32
+#define SDL_MAIN_HANDLED
+#endif
+
 #include "Depends.hpp"
 #include "Window.hpp"
 #include <cstdlib>
@@ -5,7 +9,7 @@
 #include <format>
 #include <iostream>
 
-int main() {
+int main(int argc, char* argv[]) {
   {
     char *base = SDL_GetBasePath();
     std::filesystem::current_path(base);
