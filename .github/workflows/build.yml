@@ -39,7 +39,7 @@ jobs:
     - name: Install SDL2
       run: |
         cd ${{ github.workspace }}
-        git clone https://github.com/libsdl-org/SDL.git -b 2.30.8 --depth 1
+        git clone https://github.com/libsdl-org/SDL.git -b release-2.30.8 --depth 1
         cd SDL
         cmake -B build . -G Ninja
         sudo cmake --install build
@@ -47,7 +47,7 @@ jobs:
     - name: Install SDL2_mixer
       run: |
         cd ${{ github.workspace }}
-        git clone https://github.com/libsdl-org/SDL_mixer.git -b 2.8.0 --depth 1
+        git clone https://github.com/libsdl-org/SDL_mixer.git -b release-2.8.0 --depth 1
         cd SDL_mixer
         cmake -B build . -G Ninja
         sudo cmake --install build
