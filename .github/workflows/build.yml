@@ -21,18 +21,34 @@ jobs:
       if: ${{ startsWith(matrix.config.os, 'ubuntu') }}
       run: |
         sudo apt-get update
-        sudo apt-get install ninja-build libsdl2-dev libsdl2-mixer-dev
+        sudo apt-get install ninja-build
 
     - name: Setup depends (macOS)
       if: ${{ startsWith(matrix.config.os, 'macos') }}
       run: |
-        brew install ninja sdl2 sdl2_mixer
+        brew install ninja
 
     - name: Install toml++
       run: |
         cd ${{ github.workspace }}
         git clone https://github.com/marzer/tomlplusplus.git -b v3.4.0 --depth 1
         cd tomlplusplus
+        cmake -B build . -G Ninja
+        sudo cmake --install build
+
+    - name: Install SDL2
+      run: |
+        cd ${{ github.workspace }}
+        git clone https://github.com/libsdl-org/SDL.git -b v2.30.8 --depth 1
+        cd SDL
+        cmake -B build . -G Ninja
+        sudo cmake --install build
+
+    - name: Install SDL2_mixer
+      run: |
+        cd ${{ github.workspace }}
+        git clone https://github.com/libsdl-org/SDL_mixer.git -b v2.8.0 --depth 1
+        cd SDL_mixer
         cmake -B build . -G Ninja
         sudo cmake --install build
 
