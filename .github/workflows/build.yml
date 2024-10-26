@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.config.os }}
 
     env:
-      CMAKE_PREFIX_PATH: ${{ github.workspace }}/exp
+      CMAKE_PREFIX_PATH: ${{ github.workspace }}/pon
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
