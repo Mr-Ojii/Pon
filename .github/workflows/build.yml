@@ -3,6 +3,10 @@ name: Build
 on:
   push:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     strategy:
@@ -94,3 +98,22 @@ jobs:
         name: Pon-${{ matrix.config.file }}
         path: ${{ github.workspace }}/build/bin/Pon-${{ matrix.config.file }}.zip
         
+  create-release:
+    name: Create release
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+    
+    - name: Create a Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        REVCOUNT=`git rev-list --count HEAD`
+        RELEASE_NAME=r${REVCOUNT}
+        TAG_NAME=r${REVCOUNT}
+        gh release create "${TAG_NAME}" ${{ github.workspace }}/artifacts/*.zip -t "${RELEASE_NAME}" 
