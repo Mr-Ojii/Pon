@@ -30,7 +30,7 @@ jobs:
         cd ${{ github.workspace }}
         git clone https://github.com/marzer/tomlplusplus.git -b v3.4.0 --depth 1
         cd tomlplusplus
-        cmake -B build . -G Ninja
+        cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release
         cmake --build build --config Release
         cmake --install build --prefix=${{ github.workspace }}/pon
 
@@ -39,7 +39,7 @@ jobs:
         cd ${{ github.workspace }}
         git clone https://github.com/libsdl-org/SDL.git -b release-2.30.8 --depth 1 --recursive
         cd SDL
-        cmake -B build . -G Ninja
+        cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release
         cmake --build build --config Release
         cmake --install build --prefix=${{ github.workspace }}/pon
 
@@ -48,14 +48,14 @@ jobs:
         cd ${{ github.workspace }}
         git clone https://github.com/libsdl-org/SDL_mixer.git -b release-2.8.0 --depth 1 --recursive
         cd SDL_mixer
-        cmake -B build . -G Ninja -DSDL2MIXER_VENDORED=ON -DBUILD_SHARED_LIBS=OFF -DSDL2MIXER_DEPS_SHARED=OFF
+        cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release -DSDL2MIXER_VENDORED=ON -DBUILD_SHARED_LIBS=OFF -DSDL2MIXER_DEPS_SHARED=OFF
         cmake --build build --config Release
         cmake --install build --prefix=${{ github.workspace }}/pon
 
     - name: Build
       run: |
         cd ${{ github.workspace }}
-        cmake -B build . -G Ninja -DADD_INCLUDE_DIR=${{ matrix.config.add_inc }}
+        cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release -DADD_INCLUDE_DIR=${{ matrix.config.add_inc }}
         cmake --build build --config Release
 
     - name: Create Archive
