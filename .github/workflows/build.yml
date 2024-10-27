@@ -64,6 +64,20 @@ jobs:
         cd ${{ github.workspace }}/build/bin
         install_name_tool -add_rpath /opt/homebrew/lib Pon
 
+    - name: patch (Windows)
+      if: ${{ startsWith( matrix.config.os , 'windows') }}
+      shell: pwsh
+      run: |
+        cd ${{ github.workspace }}/build
+        Invoke-WebRequest https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.0/SDL2_mixer-2.8.0-win32-x64.zip -OutFile mix.zip
+        7z x mix.zip -omix
+        cp mix/*.dll ./bin
+        cp mix/optional/* ./bin
+        rm bin/*xmp*
+        rm bin/*wavpack*
+        rm bin/*gme*
+
+
     - name: Create Archive
       shell: pwsh
       run: |

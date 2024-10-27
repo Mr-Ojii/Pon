@@ -17,24 +17,33 @@ SDL_mixerで読み込み可能な形式の一部に対応しています。
 Wav(LPCM), MP3, Ogg(Vorbis), Opus, Flac...
 
 ## 使い方
-### 環境構築
-#### Windows
-under construction...
-#### macOS
+### 頒布バイナリについて
+#### 環境構築
+##### Windows (x64)
+何もしなくて良い
+##### macOS (arm64)
 `brew install sdl2 sdl2_mixer`
-#### Linux
-under construction...
+##### Ubuntu 24.04 LTS (x64)
+`sudo apt install libsdl2-2.0-0 libsdl2-mixer-2.0-0`
 
-### 起動方法
-#### Windows
-under construction...
-#### macOS
+#### 起動方法
+##### Windows (x64)
+`Pon.exe`をダブルクリック
+##### macOS (arm64)
 ```
-xattr -rc Pon
+chmod +x ./Pon
+xattr -rc ./Pon
 ./Pon
 ```
-#### Linux
-under construction...
+##### Ubuntu 24.04 LTS (x64)
+```
+chmod +x ./Pon
+./Pon
+```
+
+### ビルドして使用
+ビルド方法は`.github/workflows/build.yml`をご覧ください。
+起動方法については頒布バイナリと同様の方法をおとりください。
 
 ### 効果音の読み込み方法
 起動すると、無機質な画面にボタンのみが出ます。  
