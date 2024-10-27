@@ -115,6 +115,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        cd ${{ github.workspace }}/artifacts
+        mv ./*/*.zip ./
         REVCOUNT=`git rev-list --count HEAD`
         RELEASE_NAME=r${REVCOUNT}
         TAG_NAME=r${REVCOUNT}
