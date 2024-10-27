@@ -17,6 +17,25 @@ SDL_mixerで読み込み可能な形式の一部に対応しています。
 Wav(LPCM), MP3, Ogg(Vorbis), Opus, Flac...
 
 ## 使い方
+### 環境構築
+#### Windows
+under construction...
+#### macOS
+`brew install sdl2 sdl2_mixer`
+#### Linux
+under construction...
+
+### 起動方法
+#### Windows
+under construction...
+#### macOS
+```
+xattr -rc Pon
+./Pon
+```
+#### Linux
+under construction...
+
 ### 効果音の読み込み方法
 起動すると、無機質な画面にボタンのみが出ます。  
 各ボタンに登録したい音声をD&Dすることで登録できます。  

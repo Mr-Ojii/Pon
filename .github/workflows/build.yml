@@ -57,6 +57,11 @@ jobs:
         cd ${{ github.workspace }}
         cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release -DADD_INCLUDE_DIR=${{ matrix.config.add_inc }}
         cmake --build build --config Release
+    
+    - name: patch (macOS arm64)
+      run: |
+        cd ${{ github.workspace }}/build/bin
+        install_name_tool -add_rpath /opt/homebrew/lib Pon
 
     - name: Create Archive
       shell: pwsh
