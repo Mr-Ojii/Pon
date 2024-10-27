@@ -86,7 +86,7 @@ jobs:
       shell: pwsh
       run: |
         cd ${{ github.workspace }}/build/bin
-        7z a Pon_${{ matrix.config.file }}.zip *
+        7z a Pon-${{ matrix.config.file }}.zip *
         
     - name: Upload artifact
       uses: actions/upload-artifact@v4
