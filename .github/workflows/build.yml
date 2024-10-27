@@ -46,7 +46,7 @@ jobs:
     - name: Install SDL2_mixer
       run: |
         cd ${{ github.workspace }}
-        git clone https://github.com/libsdl-org/SDL_mixer.git -b release-2.8.0 --depth 1 --recursive
+        git clone https://github.com/libsdl-org/SDL_mixer.git -b SDL2 --depth 1 --recursive
         cd SDL_mixer
         cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release -DSDL2MIXER_VENDORED=ON -DBUILD_SHARED_LIBS=OFF -DSDL2MIXER_DEPS_SHARED=OFF
         cmake --build build --config Release
