@@ -59,6 +59,7 @@ jobs:
         cmake --build build --config Release
     
     - name: patch (macOS arm64)
+      if: ${{ startsWith( matrix.config.os , 'macos') }}
       run: |
         cd ${{ github.workspace }}/build/bin
         install_name_tool -add_rpath /opt/homebrew/lib Pon
