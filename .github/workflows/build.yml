@@ -90,6 +90,8 @@ jobs:
       shell: pwsh
       run: |
         cd ${{ github.workspace }}/build/bin
+        cp ${{ github.workspace }}/LICENSE* .
+        cp ${{ github.workspace }}/Readme* .
         7z a Pon-${{ matrix.config.file }}.zip *
         
     - name: Upload artifact
