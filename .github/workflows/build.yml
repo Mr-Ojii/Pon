@@ -32,7 +32,7 @@ jobs:
         cd tomlplusplus
         cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release
         cmake --build build --config Release
-        cmake --install build --prefix=${{ github.workspace }}/pon
+        cmake --install build --config Release --prefix=${{ github.workspace }}/pon
 
     - name: Install SDL2
       run: |
@@ -41,7 +41,7 @@ jobs:
         cd SDL
         cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release
         cmake --build build --config Release
-        cmake --install build --prefix=${{ github.workspace }}/pon
+        cmake --install build --config Release --prefix=${{ github.workspace }}/pon
 
     - name: Install SDL2_mixer
       run: |
@@ -50,7 +50,7 @@ jobs:
         cd SDL_mixer
         cmake -B build . -G Ninja -DCMAKE_BUILD_TYPE=Release -DSDL2MIXER_VENDORED=ON -DBUILD_SHARED_LIBS=OFF -DSDL2MIXER_DEPS_SHARED=OFF
         cmake --build build --config Release
-        cmake --install build --prefix=${{ github.workspace }}/pon
+        cmake --install build --config Release --prefix=${{ github.workspace }}/pon
 
     - name: Build
       run: |
