@@ -17,7 +17,7 @@ SDL_mixerで読み込み可能な形式の一部に対応しています。
 Wav(LPCM), MP3, Ogg(Vorbis), Opus, Flac...
 
 ## 使い方
-### 頒布バイナリについて
+### 頒布バイナリを使用
 #### 環境構築
 ##### Windows (x64)
 何もしなくて良い
@@ -42,7 +42,7 @@ chmod +x ./Pon
 ```
 
 ### ビルドして使用
-ビルド方法は`.github/workflows/build.yml`をご覧ください。
+ビルド方法は`.github/workflows/build.yml`をご覧ください。  
 起動方法については頒布バイナリと同様の方法をおとりください。
 
 ### 効果音の読み込み方法
