@@ -15,9 +15,10 @@ set(ADD_INCLUDE_DIR CACHE PATH "Additional include directory")
 find_package(SDL2 REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(tomlplusplus REQUIRED)
+find_package(rtmidi REQUIRED)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${ADD_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2_mixer::SDL2_mixer)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2_mixer::SDL2_mixer RtMidi::rtmidi)
 
 if("${CMAKE_CXX_COMPILER_ID}" MATCHES "MSVC")
   set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")

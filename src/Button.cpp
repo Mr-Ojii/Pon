@@ -2,7 +2,7 @@
 
 namespace APP_NAME {
 Button::Button(const SDL_Rect &rect, const SDL_Keycode &code, const int i,
-               SoundDeviceDescription *sdd)
+               const uint8_t midi_ch, SoundDeviceDescription *sdd)
     : chunk(nullptr), pos(0, 0) {
   this->rect = rect;
   this->fill_rect = this->rect;
@@ -12,6 +12,7 @@ Button::Button(const SDL_Rect &rect, const SDL_Keycode &code, const int i,
   this->fill_rect.h -= 20;
   this->code = code;
   this->i = i;
+  this->midi_ch = midi_ch;
   this->sdd = sdd;
 }
 Button::~Button() {
@@ -67,7 +68,7 @@ bool Button::Touched(const float x, const float y) {
   }
   return false;
 }
-bool Button::Pushed(const SDL_Keysym keysym) {
+bool Button::Pushed(const SDL_Keysym& keysym) {
   if (keysym.sym != this->code)
     return false;
   if ((keysym.mod & (KMOD_LSHIFT | KMOD_RSHIFT)) == 0) {
@@ -75,6 +76,12 @@ bool Button::Pushed(const SDL_Keysym keysym) {
   } else {
     this->Stop();
   }
+  return true;
+}
+bool Button::MidiPushed(const uint8_t midi_ch) {
+  if (midi_ch != this->midi_ch)
+    return false;
+  this->Play();
   return true;
 }
 bool Button::Load(const char *path) {

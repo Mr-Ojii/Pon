@@ -56,6 +56,15 @@ jobs:
         cmake --build build --config Release
         cmake --install build --config Release --prefix=${{ github.workspace }}/pon
 
+    - name: Install rtmidi
+      run: |
+        cd ${{ github.workspace }}
+        git clone https://github.com/thestk/rtmidi.git --depth 1
+        cd rtmidi
+        cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DRTMIDI_BUILD_SHARED_LIBS=OFF
+        cmake --build build --config Release
+        cmake --install build --config Release --prefix ${{ github.workspace }}/pon
+
     - name: Build
       run: |
         cd ${{ github.workspace }}

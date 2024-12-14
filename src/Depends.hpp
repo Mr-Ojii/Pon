@@ -5,3 +5,4 @@ extern "C" {
 }
 #include "Const.hpp"
 #include <toml++/toml.hpp>
+#include <rtmidi/RtMidi.h>

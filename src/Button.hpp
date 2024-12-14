@@ -14,18 +14,22 @@ private:
   Mix_Chunk *chunk;
   PlayPos pos;
   int i;
-  SoundDeviceDescription* sdd;
+  uint8_t midi_ch;
+
+  SoundDeviceDescription *sdd;
   void Play();
   void Stop();
 
 public:
-  Button(const SDL_Rect& rect, const SDL_Keycode& code, const int i, SoundDeviceDescription* device);
+  Button(const SDL_Rect &rect, const SDL_Keycode &code, const int i,
+         const uint8_t midi_ch, SoundDeviceDescription *device);
   ~Button();
-  void Draw(SDL_Renderer*, const uint64_t) const;
-  bool Droped(const float, const float, const char*);
+  void Draw(SDL_Renderer *, const uint64_t) const;
+  bool Droped(const float, const float, const char *);
   bool Touched(const float, const float);
-  bool Pushed(const SDL_Keysym code);
-  bool Load(const char* path);
+  bool Pushed(const SDL_Keysym& code);
+  bool MidiPushed(const uint8_t midi);
+  bool Load(const char *path);
 };
 
 } // namespace APP_NAME

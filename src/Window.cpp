@@ -75,7 +75,7 @@ void Window::Run() {
     for (int j = 0; j < 8; j++) {
       rect1.x = j * 160;
       rect1.y = i * 160 + 80;
-      but.emplace_back(rect1, key_list[i * 8 + j], i * 8 + j, &sdd);
+      but.emplace_back(rect1, key_list[i * 8 + j], i * 8 + j, i * 8 + j, &sdd);
     }
 
   auto &toml = this->config.getToml();
@@ -86,8 +86,6 @@ void Window::Run() {
         but[i].Load(files[0][i].as_string()->get().c_str());
     }
   }
-
-
 
   SDL_ShowWindow(window);
   bool quit = false;
@@ -133,6 +131,12 @@ void Window::Run() {
         SDL_free(ch);
         break;
       }
+      }
+    }
+    while(!this->midi.empty()){
+      uint8_t u = midi.pop();
+      for (auto& i : but) {
+        i.MidiPushed(u);
       }
     }
     auto now = SDL_GetTicks64();
