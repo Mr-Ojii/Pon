@@ -20,7 +20,7 @@ Wav(LPCM), MP3, Ogg(Vorbis), Opus, Flac...
 ### 頒布バイナリを使用
 #### 環境構築
 ##### Windows (x64)
-何もしなくて良い
+[Visual C++ 再頒布可能パッケージ 2015-2022 X64](https://learn.microsoft.com/ja-jp/cpp/windows/latest-supported-vc-redist?view=msvc-170) のインストール
 ##### macOS (arm64)
 `brew install sdl2 sdl2_mixer`
 ##### Ubuntu 24.04 LTS (x64)
